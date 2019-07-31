@@ -38,7 +38,7 @@ public class ReturningValuesUsingExecutorSecondWay {
 				// we are unable to determine to which task the returned Future belong to.
 				// The only way to identify the task here is to make the task itself to return
 				// the identity with the result.
-				System.out.println("@@@@@@ Result = " + tasks.take().get());
+				System.out.println("@@@@@@ Result = " + tasks.take().get()); // this will give the next task result completed
 			} catch (InterruptedException | ExecutionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 import common.CalculationTaskA;
 import common.LoopTaskA;
 import common.NamedThreadFactory;
-
+//Process task results in the sequence which we retrieve them
 public class ReturningValuesUsingExecutorFirstWay {
 	public static void main(String[] args) {
 		System.out.println("[" + Thread.currentThread().getName() + "] Main Thread starts here...");
@@ -25,7 +25,8 @@ public class ReturningValuesUsingExecutorFirstWay {
 		execService.shutdown();
 
 		try {
-			System.out.println("@@@@@@ Result-1 = " + result1.get());
+			// process results in the order which we retrieve them rather than the results they arrive or complete
+			System.out.println("@@@@@@ Result-1 = " + result1.get()); // the call to get method blocks and so it will printed in sequence only.
 			System.out.println("@@@@@@ Result-2 = " + result2.get());
 			System.out.println("@@@@@@ Result-3 = " + result3.get());
 			System.out.println("@@@@@@ Result-4 = " + result4.get());
