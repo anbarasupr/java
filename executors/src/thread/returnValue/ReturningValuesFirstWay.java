@@ -6,7 +6,7 @@ public class ReturningValuesFirstWay {
 	public static void main(String[] args) {
 		System.out.println("[" + Thread.currentThread().getName() + "] Main Thread starts here...");
 	
-		ValueReturningTaskA task1=new ValueReturningTaskA(2, 3, 1);
+		ValueReturningTaskA task1=new ValueReturningTaskA(2, 3, 5);
 		Thread t1=new Thread(task1,"Thread-1");
 		
 		ValueReturningTaskA task2=new ValueReturningTaskA(3, 4, 2);

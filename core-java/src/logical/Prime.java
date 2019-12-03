@@ -1,4 +1,4 @@
-package logical;
+ package logical;
 
 /*
 Prime nos are divisible by itself and 1.

@@ -21,7 +21,7 @@ public class ReturningValuesUsingExecutorSecondWay {
 		CompletionService<TaskResult<String, Integer>> tasks = new ExecutorCompletionService<TaskResult<String, Integer>>(
 				execService);
 
-		tasks.submit(new CalculationTaskB(2, 3, 1));
+		tasks.submit(new CalculationTaskB(2, 3, 7));
 		tasks.submit(new CalculationTaskB(4, 3, 2));
 		tasks.submit(new CalculationTaskB(5, 5, 3));
 

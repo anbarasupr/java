@@ -15,7 +15,7 @@ public class ReturningValuesUsingExecutorFirstWay {
 
 		ExecutorService execService = Executors.newCachedThreadPool(new NamedThreadFactory());
 
-		Future<Integer> result1 = execService.submit(new CalculationTaskA(2, 3, 1));
+		Future<Integer> result1 = execService.submit(new CalculationTaskA(2, 3, 7));
 		Future<Integer> result2 = execService.submit(new CalculationTaskA(4, 3, 2));
 		Future<Integer> result3 = execService.submit(new CalculationTaskA(5, 5, 3));
 
