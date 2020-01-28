@@ -1,0 +1,24 @@
+Alice
+32
+New York
+Anbu
+30
+India
+Priya
+25
+India
+Brian
+25
+Chicago
+Chelsea
+19
+London
+David
+44
+Paris
+Erica
+64
+Berlin
+Frakistein
+28
+Fransisco
