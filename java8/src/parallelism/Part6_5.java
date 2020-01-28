@@ -42,7 +42,7 @@ public class Part6_5 {
 
 	public static void main(String a[]) throws InterruptedException, ExecutionException {
 		// testSupplyAsyncTimeoutComplete();
-		testSupplyAsyncTimeoutException
+		// testSupplyAsyncTimeoutException // work in java9
 	}
 
 	// succeed on timeout
@@ -53,7 +53,7 @@ public class Part6_5 {
 				.exceptionally(Part6_5::processAnotherError)
 				.thenAccept(Part6_5::printIt);
 		
-		cf.completeOnTimeout(100, 2, TimeUnit.SECONDS); // finish after 2 seconds
+		// cf.completeOnTimeout(100, 2, TimeUnit.SECONDS); // finish after 2 seconds - java 9 feature
 
 		System.out.println("Future IsDone: " + cf.isDone() + ", " + Thread.currentThread());
 		System.out.println("Future IsCancelled: " + cf.isCancelled() + ", " + Thread.currentThread());
@@ -63,7 +63,7 @@ public class Part6_5 {
 	public static void testSupplyAsyncTimeoutException() throws InterruptedException, ExecutionException {
 		CompletableFuture<Integer> cf = CompletableFuture.supplyAsync(Part6_5::generateSupplyAsync);
 		cf.exceptionally(Part6_5::processError)
-				.orTomeout(2,TimeUnit.SECONDS) // blow this after 2 seconds with timeout exception
+				//.orTimeout(2,TimeUnit.SECONDS) // blow this after 2 seconds with timeout exception - java9 feature
 				.thenApply(data -> data * 2)
 				.exceptionally(Part6_5::processAnotherError)
 				.thenAccept(Part6_5::printIt);
