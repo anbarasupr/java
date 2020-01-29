@@ -19,7 +19,7 @@ public class RunnableLambda {
 
 		// lambda exp
 		Runnable runnableLambda= ()->{
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 5; i++) {
 				System.out.println("Hello Lambda from thread [" + Thread.currentThread().getName() + "]");
 			}
 		};
@@ -27,7 +27,7 @@ public class RunnableLambda {
 		Thread t1=new Thread(runnable,"anonymous thread");
 		t1.start();
 		
-		Thread t2=new Thread(runnable,"lambda thread");
+		Thread t2=new Thread(runnableLambda,"lambda thread");
 		t2.start();
 	}
 
