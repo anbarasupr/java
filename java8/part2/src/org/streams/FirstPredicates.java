@@ -11,6 +11,8 @@ import java.util.stream.Stream;
  	efficient in 2 ways - 1) In parallel to leverage the computing power of multi core cpu
  	 				  	  2) Pipelined, to avoid unncessary intermediary computation
  	 				  	  
+ 	Streams do not hold data.
+ 	
  	The call to the filter method is lazy. 
  	And all the methods of stream that return another stream are lazy and they are intermediary operations only and it doesnt do anything. These intermediary streams are just declarations.
  	Only the final/terminal operation trigger the data processing that a stream is connected to. Ex : forEach
@@ -19,6 +21,9 @@ import java.util.stream.Stream;
  	
  	both peek and foreach are consumers.
  	peek and filter are lazy. that is intermediary operation
+ 	
+ 	
+ 	Map / Filter / Reduce operations are evaluated in one pass over the data.
  */
 
 public class FirstPredicates {
