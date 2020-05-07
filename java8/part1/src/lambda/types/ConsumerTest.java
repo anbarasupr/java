@@ -1,4 +1,4 @@
-package durga.lambda;
+package lambda.types;
 
 import java.util.*;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package durga.lambda;
+package lambda.types;
 
 import java.util.*;
 import java.util.Iterator;
@@ -12,7 +12,7 @@ public class SupplierTest {
 	public static void main(String[] args) {
 		// program to get random password
 		// length should be 8 characters
-		// 2,4,6,8 placesonly digits
+		// 2,4,6,8 places only digits
 		// 1,3,5,7 only Capital Uppercase characters, @,#,$
 		String symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#$@";
 		Supplier<Integer> ds = () -> (int) (Math.random() * 10);
