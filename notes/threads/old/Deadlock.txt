@@ -1,0 +1,19 @@
+Deadlock:
+
+
+If two threads are waiting for each other forever. Such type of infine waiting is called deadlock.
+First thread waiting for second thread and vice versa forever.
+
+First thread is waiting for the lock holding by second thread and second thread waiting for the lock holding by first thread. So  both wiats forever - deadlock
+
+Synchronized keyword which is only reason for deadlock. Hence while using synchronized keyword, we have to take special care to prevent deadlock.
+
+
+Deadlock Vs Starvation
+
+Long waiting of a thread where waiting never ends - deadlock
+Long waiting of a thread but waiting ends at certain point - starvation (Low priority thread have to wait for long time to acquire the lock until all the high priority threads (consider some 100 or more threads) complete or release the lock). But waiting of low priority thread ends at some point which is nothing but startvation
+
+
+
+

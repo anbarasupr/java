@@ -1,0 +1,72 @@
+lock interface:
+
+Why concurrent lock needed?
+
+Problems with  Traditional Synchronized Keyword:
+
+1) We are not having any flexibility to try for a lock without waiting. 
+2) THere is no way to specify maximum time for a thread to get lock. So that thread will wait until getting the lock which may creates performance problem which may cause deadlock. 
+3) If a thread releases the lock, then which waiting thread can get the lock we are not having any control on this.
+4) There is no api to list out all waiting threads for a lock
+5) Synchronized keyword is used only  either at method level or within method and it is not possible to use across multiple methods
+
+
+To overcome above, java.util.concurrent.locks is used.
+
+Provide more control in concurrency.
+
+Lock Interface: 
+Lock object is similiar to implicit lock acquired by a thread to execute synchrozied method or block.
+Lock implement provide more extensive operations then traditional implicit locks.
+
+Methods of Lock Interface:
+
+void lock()
+used to acquire a lock on object. if lock is already available then immediately current thread will get that lock, if the lock is already available then it wait until getting the lock. It is exactly same behaviour of traditional synchrozied keyword.
+
+
+boolean tryLock()
+To acquire the lock without waiting. If the lock is available, then the thread acquires the lock and returns true; If the lock is not available, then this method return false and can continue its execution without waiting. In this case, thread never be entered into waiting state.
+
+
+if(l.trylock()){
+Perform safe operation
+}
+else{
+Perform alternate operation
+}
+
+
+
+boolean tryLock(long time, TimeUnit unit)
+If lock is available, then thread will get the lock and continue its execution. If the lock is not available , then the thread will wait until specified amout of time. Still if the lock is not available, then the thread can continue its execution.
+
+
+TimeUnit is an enum present java.util.concurrent package.
+
+enum TimeUnit{
+NANOSECONDS;
+MICROSECONDS;
+MILLISECONDS
+SECONDS;
+MINUTES;
+HOURSl
+DAYS;
+}
+
+
+
+if(l.trylock(1000,TimeUnit.MILLISECONDS)){
+Perform safe operation
+}
+else{
+Perform alternate operation
+}
+
+
+void lockInterruptabily()
+Acquires lock if it is available and returns immediately. If the lock is not available, then it will wait. While waiting, if the thread is interrupted, then thread wont get the lock.
+
+void unLock()
+to release the lock.
+To call this method , compulsory the current thread should be owner of the lock. Othherwise we get runtime exception saying IllegalMonitorState exception.

@@ -1,0 +1,48 @@
+ThreadLocal: (define thread scope variable)
+
+ThreadLocal class provides thread local variables. It maintain values per thhread basis. Each ThreadLocal object maintains a separate value like Userid, TransactionId, count etc., For each thread that can  access ThreadLocal object.
+Thread can access its local values, can manipulate its value and even can remove its value. 
+
+In Every part of the code which is executed by the thread, we can access its local variables.
+
+Ex:
+Consider a servlet which invokes some business methods. We have requirement to generate a unique transaction id for each and every request and we have to pass this transaction id to all the business methods executed by servlet thread. For this requirement, we can use ThreadLocal to maintain a separate transaction id for every request that is for every thread.
+
+
+ThreadLocal class introduced in 1.2 version and it is ennhanced in 1.5 version.
+
+ThreadLocal can be associated with thread scope. Total code or multiple methods which is executed by thread has access to the corresponding thread local variables.
+
+A thread can access its own local variables and cant acces other thread local variables.
+
+Once thread entered into dead state, all its local variables are by default eligible for garbage collection.
+
+
+ThreadLocal local=new ThreadLocal();
+Methods:
+1) Object get() - returns value of thread local variable associated with current thread.
+2) Object initialValue() - returns initial value of thread local variable associated with current thread. THe default implementation of this method returns NULL. To customize to have a initial value, we have to override this method.
+3) void set(Object newValue) - set new Value
+4) void remove() - to remove a variable associated with current thread (added in 1.5)
+
+if u call get(), it internally call initialValue() and it is null by default. 
+if u set any value by calling set(), then get() will not call initialValue() and returns whatever we set is returned.
+
+
+
+ThreadLocal vs (InheritableThreadLocal)Inheritance:
+Parent threads ThreadLocal variables, by default not available to the child threads. If we want to make parent threads ThreadLocal variables value available to the child thread, then we should go for InheritableThreadLocal class
+
+By default, child threads value is exactly same as parent threads value if we use InheritableThreadLocal class. But we provide customized value for child threads, by overriding childValue() of InheritableThreadLocal class.
+
+InheritableThreadLocal local = new InheritableThreadLocal(){
+	public Object childValue(){
+		return "childTHread";
+	}
+}
+
+InheritableThreadLocal is child class of ThreadLocal. Hence all methods present in ThreadLocal, by default available to InheritableThreadLocal.
+In addition to that, it contains one below method
+
+public Object childValue()
+

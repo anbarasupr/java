@@ -1,0 +1,188 @@
+If a thread wants to wait until completing some other thread - Join()
+if t1 executes t2.join, then t1 will ne entered into waiting/blocked state until t2 completes.
+Once t2 completes, t1 entered into Ready/Runnable state. The Thread Scheduler will take care when it can continue based on scheduler algorithm.
+
+Chances of getting into Ready/Runnable state for t1.
+1) after t2 completes
+2) if waiting time expired  - t2.join(long milli), t2.join(long mili,int nano)
+3) if waiting thread got interrupted
+
+Methods:
+public void join(long milli) throws interrupted exception
+public void join(long mili,int nano) throws interrupted exception
+public void join() throws interrupted exception
+
+Always waiting thread should handle interrupted exception
+If a thread calls join() on the same thread itself, then the program will be stucked (something like dead like). In this case, thread has to wait infine amount of time.
+
+example - Marriage:
+
+t1 (Venue Fix)			t2	(Wedding Cards Printing)			t3	(Wedding cards distribution)
+-						-										-
+-						-										-
+-						t1.join()								t2.join()
+-						-										-
+-						-										-
+				
+
+Thread.yield() - if a thread executes yield(), it causes to pause the current executing thread to gives the chance to other waiting threads of same or high priority. If there is no same or high priority waiting threads, then current thread can execute continuously. The yielded thread entered into Ready/Runnable state after yielding. The Thread Scheduler will take care when it can continue based on scheduler algorithm.
+
+Its a native method which depends os level. Its not implemented in java but os level.
+
+Method:
+public static void Thread.yield()
+
+ 
+
+
+Sleep() - if a thread dont want to perform operation for a particular amount of time temparorily. It pauses the currently executing thread for a temparory period of time.
+
+Methods:
+public static void native Sleep(long milli) throws interrupted exception- native method
+public static void Sleep(long milli, int nano) throws interrupted exception
+
+After calling sleep method ,the currently executing thread entered into waiting state for the specific amount of time.
+after the sleeping expires or if the sleeping thread got interrupted, the current thread entered into Ready/Runnable state. The Thread Scheduler will take care to allocate the processor based on scheduler algorithm.
+
+
+interrupt:
+
+A thread can interrupt a sleeping thread (sleep()) or waiting thread (join()) by interrupt() of thread class.
+
+Whenever we are calling interrupt(), if the target thread not in sleeping or waiting state, then there is no impact of inter call immediately. Interupted call will be waited, until targeted thread entered into sleeping or waiting state. if the target thread entered into sleeping or waiting state, then the interrupted call will interrupt the target thread.
+
+if the target thread never entered into sleeping or waiting state in its life time, or the target thread died before calling interrupt, then there is no impact of interrupted call. This is the only case where interrupt call will be wasted.
+
+method:
+public void interrupt()
+
+
+
+
+
+Synchronization:
+
+It is a modifier only applicable for methods and blocks but not for class and variables.
+if multiple threads are trying to operate simultaneously on the same java objects, then there may be chance of data inconsistency problem.
+
+To overcome this, we should go synchronized keyword.
+
+If a method or block declared as synchronized, then at a time only one thread is allowed to execute that method or block on the given object. So that data inconsistency problem will be resolved.
+
+Disadvantage:
+Until completing first thread, second thread has to wait so the  waiting time  of thread increases and creates performance problem.
+
+For above disadvantage, we have concurrent package in java util 
+
+Internally Synchronization is implemented with lock (unique per object) concept available in Object class.
+Every object in java has a unique lock. Whenever we are using synchronized keyword, then only lock concept will come into the picture. 
+
+If a thread wants to execute a synchronized method or block on the given object, first it has to get the lock of that object.
+Once thread got the lock, then it is allowed to execute any synchronized method on that object. Once method execution is completed, automatically thread releases the lock.
+
+Acquiring and releasing lock are internally takes care by JVM.
+When requesting the synchronized method or block on object, thread get the lock automatically and releases it when method exception completed.
+
+When one thread get the lock, then other thread has to wait until the lock release.
+when one thread executing one synchronized method on a object ,it get the lock and remaining threads are not allowed to execute any other synchronized block. Because to execute synchronized block it need lock but it already acquired by another thread.
+
+
+WHerever we are performing update/add/delete operation which change the state of object, then it should be in synchronized. So that threads are accessed by sequentially. This is called synchronized area.
+
+Whereever object state wont be changed like read operation, then it is called non-synchronized area. So many can be accessed directly.
+
+Synchronization Required:
+ If multiple threads on same object, then synchronization is required.
+ 
+
+
+Two types of Lock : Object level lecok and Class level lock 
+Static synchronization: (class level lock)
+
+Every class in java has unique lock which is nothing but class level lock. 
+For every class, one class class object is created internally by jvm. that object lock is called class level object. So class level object is also internally an object level object.
+
+
+
+When a thread required class level object?
+if a thread wants to execute static synchronized method, then it need class level object.
+Once thread got class level lock, then it is allowed to execute any static synchronized methods of that class. Once method exception completes thread releases that lock.
+
+
+
+When a thread executes static synchronized method, then remaining threads are not allowed to execute static synchronized methods  of that class simultaneously. They have to wait until the lock releases on that class to execute static synchronized methods. But remaining threads can execute normal static methods, synchronized instance methods, normal instance methods.
+
+class x {
+	static synchronized m1()
+	static synchronized m2()
+	static m3()
+	synchronized m4()
+	synchronized m5()
+	m6()
+}
+
+
+synchronized block:
+
+if very few lines of the method requires synchronization, then declare those lines in synchronized block instead declaring the whole method as synchronized which improves performance.
+
+
+Declaring the synchronized block follows in below three ways:
+
+
+1) To get lock of current object:
+synchronized(this){
+}
+if a thread got lock of current object then only it is allowed to execute above area.
+
+
+2) To get lock of particular object:
+synchronized(b){
+}
+if a thread got lock of particular object 'b' then only it is allowed to execute above area.
+
+
+3) To get lock of class level object:
+synchronized(Display.class){
+}
+if a thread got lock of Display class,then only it is allowed to execute above area.
+
+
+Lock is applicable for class and object level only but not primitive types (throws unexpected type)
+
+
+
+
+Questions:
+
+Synchronized keyword? 
+It is a modifier applicable for methods and blocks. Not for variables and classes.
+
+Advantage of Synchronized?
+Resolve data inconsistency problem
+
+Disadvantage of synchronized?
+Waiting time of threads increases and create performance problem
+
+Race condition?
+If multiples threads operating simultaneously on same java objects, then there is a data inconsistency problem. It is called race condition. To resolve race condition, synchronized keyword is used
+
+Object lock?
+Every Object has unique lock. Whenever a thread wants to execute instance synchronized methods, then it is needed.
+
+Class Lock?
+Every class has unique lock. Whenever a thread wants to execute static synchronized methods, then it is needed.
+
+
+While a thread executing synchronized method on the given object, is the remaining threads are allowed execute any other synchronized methods simultaneously on the same object? - No
+
+
+Advantage of Synchronized block than synchronized method?
+Waiting time reduce
+
+
+If a thread can acquire multiple Object lock? -Yes from different objects
+
+
+
+

@@ -1,0 +1,34 @@
+Daemon Threads (Invisible or background threads):
+
+ - the threads which are executing in background. (ex- Garbage collector, Attahc Listener)
+ 
+ Objective: To provide support for non-daemon or user threads or main thread.
+ 
+ If the main thread runs with low memory, then JVM runs Garbage Collector (Daemon thread) to destroy useless objects to free the memory. With this free memory, main thread can continue its execution.
+ 
+ Usually Daemon threads having low priority. But based on our requirement, daemons threads can run with high priority also.
+ 
+ 
+ Check Daemon thread - isDaemon()
+ 
+ Change into Daemon - setDaemon()
+ 
+ methods:
+ public boolean isDaemon()
+ public void setDaemon(boolean b)
+ 
+ 
+ we can change daemon nature before starting of thread only. But if try after starting a thread, it throws IllegalThreadStateException.
+ 
+ By default, main thread is non daemon. For all remaining threads daemon will be inherited from parent to child. i.e if the parent thread is daemon, then automatically child thread also daemon. If parent is non daemon, then automatically child thread also non daemon.
+ 
+ 
+ It is impossible to change the daemon nature of a main() method thread because it is already started by JVM. It has to be set before threads starts.
+ 
+ 
+ Whenever last non daemon thread terminates, then automatically all the daemon threads will be terminated irrespective where position.
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,53 @@
+ReEntarantLock:
+
+It is the implementation class of lock interface and direct child class of object. For using  this, no need to use or go for traditional synchronize pattern.
+
+1)ReEntrantLock l=new ReEntrantLock();
+
+For every thread jvm internally maintains lock hold count.
+for every time calling l.lock, it increments hold count and acquire the lock.
+
+	l.lock() -> increments hold count from 0 to 1
+	l.lock() -> increments hold count from 1 to 2
+	l.lock() -> increments hold count from 2 to 3
+	
+	So that the lock becomes strong on that object based on that hold count of object.
+	It holds multiple holds on same object i.e more strong
+	for above, if u unlock one time, it will not remove (no effect) the lock on that object until the hold count reaches to zero.
+	
+	l.unlock() -> decrements hold count from 3 to 2 (no effect on lock removal)
+	l.unlock() -> decrements hold count from 2 to 1 (no effect on lock removal)
+	l.unlock() -> decrements hold count from 1 to 0 (now effect on lock removal - the lock get removed)
+	
+	
+ReEntarant means a thread can acquire same lock multiple times, without any issue. Internally reentrant increments threads personal count (hold count) whenever we lock() and decrements count value whenever thread calls unlock() and lock will be released whenever count reaches to zero.
+
+
+2)ReEntrantLock l=new ReEntrantLock(boolean fairness);
+
+Fiarness Policy:
+fairness - if i kept fairness as true then the longest waiting thread  get the chance to acquire the lock if the lock is available when multiple threads are waiting. 
+
+fairness (default)- if it is false, then we dont know which thread get chance. It is depend on thread scheduling.
+
+
+Methods of ReEntarantLock class:
+
+Since it is implementation class of lock interface, all methods of lock is there in reentrant class.
+
+1)void lock()
+2)boolean  tryLock()
+3)boolean  tryLock(long milli,TiMeUnit t)
+4)void lockInterruptibly()
+5)void unLock()
+
+
+6) int getHoldCount() - how many holds current thread have.
+7) boolean isHeldByCurrentThread - is the lock hold by current thread or not
+8) int getQueueLenngth() - how many threads are waiting to get the lock
+9) Collection getQueuedThreads() - which threads are in the queue to get the lock
+10) boolean hasQueuedThreds() - check if any threads waiting to get the lock
+11) boolean islocked() - is this lock is already locked by any thread or not
+12) boolean isFair() - is fairness policy set or not
+13) Thread getOwner() - currently the lock is hold by which thread
+

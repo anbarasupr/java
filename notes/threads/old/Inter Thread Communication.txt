@@ -1,0 +1,80 @@
+Inter Thread Communication:
+
+- Two threads communicating with each other by (wait, notify, notifyall)
+Who has to call wait()?
+- a thread which is expecting updation,  has to call  wait() and immediately the thread entered into waiting state.
+Who has to call notify()?
+- a thread which is responsible to perform updation,  after performing updation and it has to call notify(), then the waiting thread will get the notification and continue its execution with those updated  items.
+
+
+All above methods are present in Object class. 
+
+Above methods are only useful in multithreading, then why it is present in Object class instead of Thread class? 
+Thread can call these methods on any java objects.
+
+if a thread want to call wait, notify notifyall methods on any object, then compulsory this thread should be owner of that
+object otherwise jvm throws IllegalMonitorException. Owner in the sense, the thread should have the lock of that object that is the thread should be in synchrozied area.
+
+So we call wait, notify notifyall methods only in synchrozied area else it throws runtime exception called IllegalMonitorException.
+
+
+A thread get lock on Object ob  and calls wait (). A thread can get many locks but related to object ob it should be only one.
+After calling wait() on object ob and it immediately releases the lock on that particular object only and entered into waiting state.
+
+(The reason it immediately releases the lock is - some updating thread has to update the waiting object by acquiring the lock. if it doesnt releases the lock then the updating thread cant update the object ob without acquiring th lock, Some threads do update and notify, some other do noify and update, both are possible based on developer)
+
+If a thread calls notify() on object ob, it releases the lock of the object ob but may not immediately. Except wait, notify,notifyall there is no other methods where thread (join, yeild,sleep)releases the lock.
+
+
+methods:
+public final void wait() throws  InterrupedException-  unti getting notification it  wait
+public final native void  wait(long  milii)  throws  InterrupedException - not implemented in java, implemented in os level
+public final void  wait(long  milii, int nano)  throws  InterrupedException
+
+public final native notify() 
+public final native notifyAll()
+
+- after notify, the notifying thread will continue, there is no  waiting state
+
+
+When the waiting thread come out of waiting state and entered into Ready state?
+
+
+1) waiting thread got notification
+2) waiting time expires
+3) waiting thread interrupted
+
+For all above 3 scenarios, the waiting thread goes to Another waiting state in order to get lock on the notified object or object ob. after getting the lock on the object ob then only it entered into Ready/Runnable state. After entering into Ready state there is no guarantee that it enter into running state. That is entirely depends on Thread Scheduler which will  scheduling the threads based on scheduling algorithm to allocate the processor.
+
+
+Consumer - Producer example:
+Producer thread is responsible  to produce items to the queue. 
+Consumer thread  is responsible to consume items from the queue.
+Queue is the common java object b/w producer and consumer threads.
+If queue is empty, then consumer thread will call wait() on queue object and entered into waiting state and also releases the lock on queue object.
+After producing items to the queue, producer thread is responsible to call notify().
+Then the waiting consumer will get the notification and continue its execution with updated items.
+
+
+
+Diff b/w notify and notifyAll():
+if 10 waiting consumer threads are waiting for the queue object updation, then notifyAll() will be called by producer thread instead of calling 10 times of notify().
+if the producer call notify()  to give the notification to multiple waiting threads- then only one thread got notified and remaining threads have to wait for further notification. Which thread will be notified, we cant expect. It depends on JVM.
+
+
+
+So The producer call notify()  to give the notification to only one waiting thread - notify()
+So the producer call notifyAll()  to give the notification to multiple waiting threads - notifyAll()
+
+
+
+We can use notifyAll() to give the notification for all waiting threads of a particular object. Eventhough multiple threads are notified but execution will be performed one by one because threads are required to get the lock on that particular object. Since only one lock is available, the threads acquire lock sequentially and executes.
+
+
+
+
+
+
+
+
+

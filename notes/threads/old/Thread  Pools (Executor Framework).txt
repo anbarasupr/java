@@ -1,0 +1,86 @@
+Thread  Pools (Executor Framework):
+
+Advantage:
+Creating a new thread for every jobs, may create performance and memory problems. To Overcome this, we should go thread pool. Thread pool is a pool of already created threads ready to do our job. Java 1.5 introduces thread pool framework to implement this. 
+
+Thread Pool framework is also known as Executor framework.
+
+Create Thread Pool:
+ExecutorService e=Executors.newFixedThreadPool(3);
+
+We can submit a runnable job by using submit();
+e.submit(job); -> job is a runnable object
+
+We can shutdown executor service, by using shutdown()
+e.shutdown()
+
+In this, a single thread can be reused for multiple jobs. 
+
+
+Where it is applicable:
+
+For designing web server or app server, internally thread pool approach is good.
+
+For web server, multiple request will come. A pool of threads is created in the webserver.  For request or whenever the request comes, a new thread will be allocated from the pool of thread and that thread is responsible to process the request.  After completing the job, the thread will come back to the pool.
+
+Default thread pool size is 60 - at a time 60 request can be processed 
+
+
+Callable VS  Runnable
+
+In  case  of Callable, after completing the job, the thread can return value.
+Class MyThread implements Callable{
+	public Object call(){
+		//do
+	}
+}
+
+Future:
+The return value can be hold by using Future class.
+Future object=executorService.submit(callableJob);
+object.get() - will give returned value.
+
+
+
+In  case  of Callable, after completing the job, the thread cannot return value. 
+
+Class MyThread implements Runnable{
+	public void run(){
+		//do
+	}
+}
+
+
+
+ Runnable vs Callable
+1) if a thread is not required to return anything, after completing the job then we go for Runnable.
+   if a thread is required to return anything, after completing the job then we go for Callable.
+   
+2) Runnable interface contains only one method - public void run()
+   Callable interface contains only one method - public Object call() throws Exception
+   
+3) Runnable job is not required to return anything, hence return type of run() is void
+   Callable job is required to return something, hence return type of run() is Object
+   
+4) Within run() of Runnable, if there is any chance of raising checked exceptions compulsory we should handle by using try 	   catch. Because, we cant use throws keyword in run().
+   Within call() of Callable, if there is any chance of raising checked exceptions,we are not required to handle by using try catch. Because, we call() already throws exception.
+   
+   
+5) Runnable present in java.lang
+   Callable present in java.util.concurrent
+
+6) Runnable introduced in 1.0
+   Callable introduced in 1.5
+
+
+
+
+Note: if parent class doesnt throw checked exception , then while overiding the method by child, the child cant throw checked exceptions. 
+Example: run() of Runnable
+
+
+
+
+
+
+
