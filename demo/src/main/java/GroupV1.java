@@ -17,7 +17,7 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class DemoApplication {
+public class GroupV1 {
 
 	public static void main(String[] args) throws StreamReadException, DatabindException, IOException {
 		String url = "F:\\git\\java\\java\\demo\\src\\main\\resources\\json\\input.json";
@@ -103,12 +103,16 @@ public class DemoApplication {
 
 			((Map<String, Double>) subMap.get("types")).merge((String) i.get("workType"), currentEffort,
 					(o, n) -> (Double) o + (Double) n);
+			
+			//List<Map<String, Double>> typeList = (List<Map<String, Double>>) subMap.get("typeList");
+			//dtypeList.stream().filter(null)
+			
 
 		});
 		// List<Map<String, Object>> finalData = (List<Map<String, Object>>)
 		// tempMap.values();
 
-		System.out.println("finalData1: " + mapper.writeValueAsString(tempMap));
+		System.out.println("finalDataTest1: " + mapper.writeValueAsString(tempMap));
 
 	}
 

@@ -1,0 +1,41 @@
+{
+	"versionId": 1,
+	"infoTableRowsV1": [
+		{
+			"country": "Argentina",
+			"portType": "Ethernet",
+			"portSpeed": "1 Mbps",
+			"price": "500.0"
+		},
+		{
+			"country": "Argentina",
+			"portType": "Ethernet",
+			"portSpeed": "10 Mbps",
+			"price": "700.0"
+		},
+		{
+			"country": "Argentina",
+			"portType": "TDM",
+			"portSpeed": "2 Mbps",
+			"price": "600.0"
+		},
+		{
+			"country": "Argentina",
+			"portType": "TDM",
+			"portSpeed": "10 Mbps",
+			"price": "300.0"
+		},
+		{
+			"country": "India",
+			"portType": "Wireless",
+			"portSpeed": "100 Mbps",
+			"price": "800.0"
+		},
+		{
+			"country": "India",
+			"portType": "Wireless",
+			"portSpeed": "200 Mbps",
+			"price": "1200.0"
+		}
+	]
+}
