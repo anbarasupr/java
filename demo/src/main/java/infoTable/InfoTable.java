@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -42,6 +43,7 @@ class InfoTableRowData implements Serializable {
 	private String columnValue;
 }
 
+@ToString
 class InfoTableRowV1 implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Getter
@@ -55,5 +57,21 @@ class InfoTableRowV1 implements Serializable {
 	private String portSpeed;
 	@Getter
 	@Setter
-	private String price;
+	private Double price;
+	@Getter
+	@Setter
+	private Double mrc;
+	@Getter
+	@Setter
+	private Double nrc;
+
+	record CountryPortGroup(String country, String portType) {
+	}
+
+	record MrcNrcAggregation(Double mrc, Double nrc, Double price) {
+	}
+
+	record CountryPortSpeedGroup(String country, String portType, String speed) {
+	}
+
 }

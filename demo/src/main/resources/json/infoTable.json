@@ -33,6 +33,26 @@
 				},
 				{
 					"columnName": "PORT_SPEED",
+					"columnValue": "1 Mbps"
+				},
+				{
+					"columnName": "PRICE",
+					"columnValue": "200.0"
+				}
+			]
+		},
+		{
+			"data": [
+				{
+					"columnName": "COUNTRY",
+					"columnValue": "Argentina"
+				},
+				{
+					"columnName": "PORT_TYPE",
+					"columnValue": "Ethernet"
+				},
+				{
+					"columnName": "PORT_SPEED",
 					"columnValue": "10 Mbps"
 				},
 				{
