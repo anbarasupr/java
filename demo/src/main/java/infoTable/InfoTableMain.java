@@ -2,6 +2,8 @@ package infoTable;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -67,8 +69,29 @@ public class InfoTableMain {
 						e -> new CustomPair(e.get("COUNTRY"), e.get("PORT_TYPE"), e.get("PORT_SPEED")),
 						Collectors.summingDouble(e -> Double.parseDouble(e.get("PRICE")))));
 
-		System.out.println("countryPortTypeGroupV2: "
-				+ mapper.writerWithDefaultPrettyPrinter().writeValueAsString(countryPortTypeGroupV2));
+		Map<CustomPair, Double> countryPortTypeGroupV3 = listMap.stream()
+				.collect(Collectors.groupingBy(
+						e -> new CustomPair(e.get("COUNTRY"), e.get("PORT_TYPE"), e.get("PORT_SPEED")),
+						Collectors.summingDouble(e -> Double.parseDouble(e.get("PRICE")))));
+
+		List<Map<Object, Object>> countryPortTypeGroupV4 = listMap.stream()
+				.collect(Collectors.groupingBy(
+						e -> new CustomPair(e.get("COUNTRY"), e.get("PORT_TYPE"), e.get("PORT_SPEED")),
+						Collectors.summingDouble(e -> Double.parseDouble(e.get("PRICE")))))
+				.entrySet().stream().map(entry -> {
+					CustomPair pair = entry.getKey();
+					double price = entry.getValue();
+					Map m = new HashMap<>();
+					m.put("country", pair.getI());
+					m.put("portType", pair.getJ());
+					m.put("portSpeed", pair.getK());
+					m.put("price", price);
+					return m;
+					// return Arrays.asList(pair.getI(), pair.getJ(), pair.getK(), price);
+				}).collect(Collectors.toList());
+
+		System.out.println("countryPortTypeGroupV4: "
+				+ mapper.writerWithDefaultPrettyPrinter().writeValueAsString(countryPortTypeGroupV4));
 
 	}
 
