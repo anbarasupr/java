@@ -1,0 +1,60 @@
+[
+	{
+		"siteType": "HA",
+		"countryList": [
+			{
+				"country": "Argentina",
+				"count": 2,
+				"serviceList": [
+					{
+						"portType": "Ethernet",
+						"portSpeed": "100 Mbps",
+						"type": "Access"
+					},
+					{
+						"portType": "Ethernet",
+						"portSpeed": "200 Mbps",
+						"type": "PIP"
+					}
+				]
+			},
+			{
+				"country": "Chile",
+				"count": 2,
+				"serviceList": [
+					{
+						"portType": "Ethernet",
+						"portSpeed": "1 Mbps",
+						"type": "Access"
+					},
+					{
+						"portType": "Ethernet",
+						"portSpeed": "2 Mbps",
+						"type": "IDS"
+					}
+				]
+			}
+		]
+	},
+	{
+		"siteType": "Large",
+		"countryList": [
+			{
+				"country": "Bermuda",
+				"count": 3,
+				"serviceList": [
+					{
+						"portType": "TDM",
+						"portSpeed": "10 Mbps",
+						"type": "Access"
+					},
+					{
+						"portType": "TDM",
+						"portSpeed": "100 Mbps",
+						"type": "PIP"
+					}
+				]
+			}
+		]
+	}
+]

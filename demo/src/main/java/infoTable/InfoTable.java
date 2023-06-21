@@ -23,6 +23,9 @@ public class InfoTable implements Serializable {
 	@Getter
 	@Setter
 	private List<InfoTableRowV1> infoTableRowsV1;
+	@Getter
+	@Setter
+	private String data;
 
 }
 

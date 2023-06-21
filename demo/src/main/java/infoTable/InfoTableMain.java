@@ -18,16 +18,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class InfoTableMain {
 
 	public static void main(String[] args) throws StreamReadException, DatabindException, IOException {
-		String url = "F:\\git\\java\\java\\demo\\src\\main\\resources\\json\\infoTable.json";
+		String url = "F:\\git\\java\\java\\demo\\src\\main\\resources\\jsn\\infoTable.json";
 		ObjectMapper mapper = new ObjectMapper();
 		InfoTable infoTable = mapper.readValue(new File(url), InfoTable.class);
 		System.out.println("infoTable: " + infoTable.getVersionId());
 		List<InfoTableRow> infoTableRows = infoTable.getInfoTableRows();
 		System.out.println("infoTableRows: " + infoTableRows.size());
+		//System.out.println("data: " + infoTable.getData());
 
-		countryGrouping(infoTableRows, mapper);
+		//countryGrouping(infoTableRows, mapper);
 		// infoTableRows.stream().flatMap(r -> r.getData().stream()).
+		
+		List<Map<String, String>> listMap = infoTableRows.stream()
+				.map(r -> r.getData().stream()
+						.collect(Collectors.toMap(InfoTableRowData::getColumnName, InfoTableRowData::getColumnValue)))
+				.collect(Collectors.toList());
+		
+		
+		String country = "Argentina";
+		String portType = "TDM";
 
+		// Map<Pair<String, String>, List<Map<String, String>>> 
+		Map<Object, Double> countryPortTypeGroup = listMap.stream()
+				.filter(e->e.get("COUNTRY").equals(country))
+				.filter(e->e.get("PORT_TYPE").equals(portType))
+
+				.collect(Collectors.groupingBy(e -> Pair.of(country, portType), Collectors.summingDouble(e -> Double.parseDouble(e.get("PRICE")))));
+		System.out.println("countryGroup: "
+				+ mapper.writerWithDefaultPrettyPrinter().writeValueAsString(countryPortTypeGroup));
 	}
 
 	public static void countryGrouping(List<InfoTableRow> infoTableRows, ObjectMapper mapper)

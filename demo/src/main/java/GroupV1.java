@@ -51,8 +51,7 @@ public class GroupV1 {
 
 	public static void test(List<Map<String, Object>> transformedData, ObjectMapper mapper)
 			throws JsonProcessingException {
-
-		Map<String, Map<String, Object>> tempMap = new HashMap<String, Map<String, Object>>();
+ 		Map<String, Map<String, Object>> tempMap = new HashMap<String, Map<String, Object>>();
 
 		transformedData.forEach(i -> {
 			Double currentEffort = (Double) i.get("effort");
