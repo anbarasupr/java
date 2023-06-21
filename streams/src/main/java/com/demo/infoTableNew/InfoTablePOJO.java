@@ -1,4 +1,4 @@
-package infoTab;
+package com.demo.infoTableNew;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import lombok.ToString;
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoTablePOJO {
+
 	@Getter
 	@Setter
 	private String country;
@@ -30,5 +31,8 @@ public class InfoTablePOJO {
 	@Getter
 	@Setter
 	private String type;
+	@Getter
+	@Setter
+	private String siteType;
 
 }

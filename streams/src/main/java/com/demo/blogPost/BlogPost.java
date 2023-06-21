@@ -1,4 +1,4 @@
-package blogPost;
+package com.demo.blogPost;
 
 import java.io.Serializable;
 

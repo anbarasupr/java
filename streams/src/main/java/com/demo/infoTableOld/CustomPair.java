@@ -1,4 +1,4 @@
-package infoTable;
+package com.demo.infoTableOld;
 
 import java.io.Serializable;
 

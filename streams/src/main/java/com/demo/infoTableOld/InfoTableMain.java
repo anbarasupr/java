@@ -1,4 +1,4 @@
-package infoTable;
+package com.demo.infoTableOld;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class InfoTableMain {
 
 	public static void main(String[] args) throws StreamReadException, DatabindException, IOException {
-		String url = "F:\\git\\java\\java\\demo\\src\\main\\resources\\jsn\\infoTable.json";
+		String url = "F:\\git\\java\\java\\streams\\src\\main\\resources\\json\\infoTableOld\\infoTable.json";
 		ObjectMapper mapper = new ObjectMapper();
 		InfoTable infoTable = mapper.readValue(new File(url), InfoTable.class);
 		System.out.println("infoTable: " + infoTable.getVersionId());

@@ -1,4 +1,4 @@
-package blogPost;
+package com.demo.blogPost;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class BlogPostMain {
 
 	public static void main(String[] args) throws IOException {
 
-		String url = "F:\\git\\java\\java\\demo\\src\\main\\resources\\json\\blog.json";
+		String url = "F:\\git\\java\\java\\stream\\src\\main\\resources\\json\\blog\\blog.json";
 		ObjectMapper mapper = new ObjectMapper();
 		// List<BlogPost> posts = mapper.readValue(new File(url), List.class);
 		List<BlogPost> posts = Arrays.asList(new BlogPost("Java", "Tagore", BlogPostType.GUIDE, 100),

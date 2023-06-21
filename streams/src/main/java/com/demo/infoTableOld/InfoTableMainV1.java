@@ -1,4 +1,4 @@
-package infoTable;
+package com.demo.infoTableOld;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,19 +7,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.demo.infoTableOld.InfoTableRowV1.CountryPortGroup;
+import com.demo.infoTableOld.InfoTableRowV1.CountryPortSpeedGroup;
+import com.demo.infoTableOld.InfoTableRowV1.MrcNrcAggregation;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import infoTable.InfoTableRowV1.CountryPortGroup;
-import infoTable.InfoTableRowV1.CountryPortSpeedGroup;
-import infoTable.InfoTableRowV1.MrcNrcAggregation;
-
 public class InfoTableMainV1 {
 
 	public static void main(String[] args) throws StreamReadException, DatabindException, IOException {
-		String url = "F:\\git\\java\\java\\demo\\src\\main\\resources\\json\\infoTableV1.json";
+		String url = "F:\\git\\java\\java\\streams\\src\\main\\resources\\json\\infoTableOld\\infoTableV1.json";
 		ObjectMapper mapper = new ObjectMapper();
 		InfoTable infoTable = mapper.readValue(new File(url), InfoTable.class);
 		System.out.println("infoTable: " + infoTable.getVersionId());

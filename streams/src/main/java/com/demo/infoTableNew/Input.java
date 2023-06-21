@@ -1,4 +1,4 @@
-package infoTab;
+package com.demo.infoTableNew;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,11 +15,18 @@ public class Input implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Getter
 	@Setter
+	private List<Request> request;
+}
+
+@NoArgsConstructor
+class Request implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@Getter
+	@Setter
 	private String siteType;
 	@Getter
 	@Setter
 	private List<CountryService> countryList;
-
 }
 
 class CountryService implements Serializable {
