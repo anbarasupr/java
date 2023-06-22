@@ -1,0 +1,20 @@
+[
+	{
+		"title": "Java",
+		"author": "Tagore",
+		"type": "GUIDE",
+		"likes": 100
+	},
+	{
+		"title": "Times of India",
+		"author": "Times",
+		"type": "NEWS",
+		"likes": 200
+	},
+	{
+		"title": "Movie",
+		"author": "Ram",
+		"type": "REVIEW",
+		"likes": 300
+	}
+]

@@ -1,0 +1,125 @@
+{
+	"versionId": 1,
+	"infoTableRows": [
+		{
+			"data": [
+				{
+					"columnName": "COUNTRY",
+					"columnValue": "Argentina"
+				},
+				{
+					"columnName": "PORT_TYPE",
+					"columnValue": "Ethernet"
+				},
+				{
+					"columnName": "PORT_SPEED",
+					"columnValue": "1 Mbps"
+				},
+				{
+					"columnName": "PRICE",
+					"columnValue": "500.0"
+				}
+			]
+		},
+		{
+			"data": [
+				{
+					"columnName": "COUNTRY",
+					"columnValue": "Argentina"
+				},
+				{
+					"columnName": "PORT_TYPE",
+					"columnValue": "Ethernet"
+				},
+				{
+					"columnName": "PORT_SPEED",
+					"columnValue": "1 Mbps"
+				},
+				{
+					"columnName": "PRICE",
+					"columnValue": "200.0"
+				}
+			]
+		},
+		{
+			"data": [
+				{
+					"columnName": "COUNTRY",
+					"columnValue": "Argentina"
+				},
+				{
+					"columnName": "PORT_TYPE",
+					"columnValue": "Ethernet"
+				},
+				{
+					"columnName": "PORT_SPEED",
+					"columnValue": "1 Mbps"
+				},
+				{
+					"columnName": "PRICE",
+					"columnValue": "240.0"
+				}
+			]
+		},
+		{
+			"data": [
+				{
+					"columnName": "COUNTRY",
+					"columnValue": "Argentina"
+				},
+				{
+					"columnName": "PORT_TYPE",
+					"columnValue": "Ethernet"
+				},
+				{
+					"columnName": "PORT_SPEED",
+					"columnValue": "10 Mbps"
+				},
+				{
+					"columnName": "PRICE",
+					"columnValue": "700.0"
+				}
+			]
+		},
+		{
+			"data": [
+				{
+					"columnName": "COUNTRY",
+					"columnValue": "Argentina"
+				},
+				{
+					"columnName": "PORT_TYPE",
+					"columnValue": "TDM"
+				},
+				{
+					"columnName": "PORT_SPEED",
+					"columnValue": "10 Mbps"
+				},
+				{
+					"columnName": "PRICE",
+					"columnValue": "400.0"
+				}
+			]
+		},
+		{
+			"data": [
+				{
+					"columnName": "COUNTRY",
+					"columnValue": "Argentina"
+				},
+				{
+					"columnName": "PORT_TYPE",
+					"columnValue": "TDM"
+				},
+				{
+					"columnName": "PORT_SPEED",
+					"columnValue": "2 Mbps"
+				},
+				{
+					"columnName": "PRICE",
+					"columnValue": "200.0"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,30 @@
+[
+    {
+        "project": "Project1",
+        "effort": 425, // sum of all efforts
+        "types": [
+            {
+                "workType": "Dev",
+                "effort": 350 // sum of all effort where workType == Dev
+            },
+            {
+                "workType": "QA",
+                "effort": 75 // sum of all effort where workType == QA
+            }
+        ]
+    },
+    {
+        "project": "Project2",
+        "effort": 850, // sum of all efforts
+        "types": [
+            {
+                "workType": "Dev",
+                "effort": 600 // sum of all effort where workType == Dev
+            },
+            {
+                "workType": "QA",
+                "effort": 250 // sum of all effort where workType == QA
+            }
+        ]
+    }
+]
